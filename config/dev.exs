@@ -5,7 +5,7 @@ config :my_app, MyApp.Repo,
   username: "postgres",
   password: "postgres",
   database: "my_app_dev",
-  hostname: "localhost",
+  hostname: "db",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
