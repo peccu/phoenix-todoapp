@@ -1,6 +1,10 @@
 defmodule MyAppWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :my_app
 
+  # for Client's LiveSocket
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: true
+
   socket "/socket", MyAppWeb.UserSocket,
     websocket: true,
     longpoll: false

@@ -16,6 +16,9 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
+    # this means live(url, LiveView) |> mount |> render
+    live "/todo", TodoLive
+
     get "/", PageController, :index
   end
 
