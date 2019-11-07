@@ -101,4 +101,11 @@ defmodule MyApp.Todos do
   def change_todo(%Todo{} = todo) do
     Todo.changeset(todo, %{})
   end
+
+  @topic inspect(__MODULE__)
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(MyApp.PubSub, @topic)
+  end
+
 end
