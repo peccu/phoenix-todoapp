@@ -1,18 +1,10 @@
 defmodule MyAppWeb.TodoLive do
   use Phoenix.LiveView
-  import Calendar.Strftime
   alias MyApp.Todos
+  alias MyAppWeb.TodoView
 
   def render(assigns) do
-    ~L"""
-    <div>
-      <h2><%= @salutation %></h2>
-      <h2>It's <%= strftime!(@date, "%r") %></h2>
-      <%= for todo <- @todos do %>
-      <div><%= todo.title %></div>
-      <% end %>
-    </div>
-    """
+    TodoView.render("todos.html", assigns)
   end
 
   def mount(_session, socket) do
