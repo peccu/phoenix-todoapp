@@ -1,11 +1,12 @@
 defmodule TodoappWeb.TodoLive do
   use Phoenix.LiveView
+  import Calendar.Strftime
 
   def render(assigns) do
     ~L"""
     <div>
       <h2><%= @salutation %></h2>
-      <h2>It's <%= @date %></h2>
+      <h2>It's <%= strftime!(@date, "%r") %></h2>
     </div>
     """
   end
