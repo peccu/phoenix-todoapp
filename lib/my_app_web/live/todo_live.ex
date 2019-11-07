@@ -1,4 +1,4 @@
-defmodule TodoappWeb.TodoLive do
+defmodule MyAppWeb.TodoLive do
   use Phoenix.LiveView
   import Calendar.Strftime
 
