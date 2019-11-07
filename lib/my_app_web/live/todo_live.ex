@@ -17,6 +17,13 @@ defmodule MyAppWeb.TodoLive do
     {:noreply, put_date(socket)}
   end
 
+  def handle_event("add", %{"todo" => todo}, socket) do
+    Todos.create_todo(todo)
+
+    {:noreply, put_date(socket)}
+  end
+
+
   defp put_date(socket) do
     salutation = "Welcome to LiveView, from the Programming Phoenix team!"
     assign(socket,
