@@ -22,12 +22,12 @@ config :logger, level: :info
 # verify
 # APP_NAME=foo SECRET_KEY_BASE="$(mix phx.gen.secret)" MIX_ENV=prod DATABASE_URL="postgresql://user:pass@localhost:5432/foo" PORT=4000 mix phx.server
 # curl localhost:4000
-config :my_app, MyAppWeb.Endpoint,
+config :app, AppWeb.Endpoint,
   url: [host: (System.get_env("APP_NAME") || "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com", port: 80],
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
   server: true
 
-config :my_app, MyApp.Repo,
+config :app, App.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   ssl: true,
