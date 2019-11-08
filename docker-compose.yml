@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  gigalixir:
+    build: ./docker
+    # env_file:
+    #   - .env
+    # command: tail -f /dev/null
+    # stop_signal: SIGKILL
+    volumes:
+      - .:/app
