@@ -30,7 +30,7 @@ config :app, AppWeb.Endpoint,
 config :app, App.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  ssl: if System.get_env("APP_NAME") != nil, do: true, else: false,
+  ssl: (if System.get_env("APP_NAME") != nil, do: true, else: false),
   pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
 
 # ## SSL Support
