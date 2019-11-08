@@ -1,4 +1,4 @@
-# MyApp
+# App
 
 To start your Phoenix server:
 
