@@ -2,14 +2,7 @@
 # https://blog.gigalixir.com/elixir-releases-on-gigalixir/
 # https://gigalixir.readthedocs.io/en/latest/main.html#modifying-existing-app-with-mix
 # https://hexdocs.pm/phoenix/releases.html
-# $ export SECRET_KEY_BASE=$(mix phx.gen.secret)
-# $ export DATABASE_URL=ecto://USER:PASS@HOST/database
-# $ mix deps.get --only prod
-# $ MIX_ENV=prod mix compile
-# $ npm run deploy --prefix ./assets
-# $ mix phx.digest
-# $ MIX_ENV=prod mix release
-# $ _build/prod/rel/app/bin/app start
+# to test, run mix-release.sh
 import Config
 
 secret_key_base =
