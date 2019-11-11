@@ -11,6 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :app, AppWeb.Endpoint,
   # url: [host: "example.com", port: 80],
+  check_origin: ["//0.0.0.0:4000"],
   server: true,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
