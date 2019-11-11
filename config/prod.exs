@@ -17,22 +17,6 @@ config :app, AppWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-## Gigalixir config
-# https://gigalixir.readthedocs.io/en/latest/main.html#modifying-existing-app-with-mix
-# verify
-# APP_NAME=foo SECRET_KEY_BASE="$(mix phx.gen.secret)" MIX_ENV=prod DATABASE_URL="postgresql://user:pass@localhost:5432/foo" PORT=4000 mix phx.server
-# curl localhost:4000
-config :app, AppWeb.Endpoint,
-  url: [host: System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com", port: 80],
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
-  server: true
-
-config :app, App.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
-  ssl: (if System.get_env("APP_NAME") != nil, do: true, else: false),
-  pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
-
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
