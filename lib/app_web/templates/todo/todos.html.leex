@@ -1,7 +1,3 @@
-<div>
-  <h2><%= @salutation %></h2>
-  <h2>It's <%= strftime!(@date, "%r") %></h2>
-</div>
 <%= for todo <- @todos do %>
 <div>
   <%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %>

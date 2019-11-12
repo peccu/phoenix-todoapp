@@ -8,14 +8,9 @@ defmodule AppWeb.TodoLive do
   end
 
   def mount(_session, socket) do
-    # if connected?(socket), do: :timer.send_interval(1000, self(), :tick)
     Todos.subscribe()
 
     {:ok, put_date(socket)}
-  end
-
-  def handle_info(:tick, socket) do
-    {:noreply, put_date(socket)}
   end
 
   def handle_info({Todos, [:todo | _], _}, socket) do
@@ -35,10 +30,6 @@ defmodule AppWeb.TodoLive do
   end
 
   defp put_date(socket) do
-    salutation = "Welcome to LiveView, from the Programming Phoenix team!"
-    assign(socket,
-      salutation: salutation,
-      date: :calendar.local_time(),
-      todos: Todos.list_todos())
+    assign(socket, todos: Todos.list_todos())
   end
 end

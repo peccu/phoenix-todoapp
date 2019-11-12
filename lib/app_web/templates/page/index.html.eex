@@ -1,3 +1,4 @@
+<%= live_render(@conn, AppWeb.ClockLive) %>
 <h1>Todo List</h1>
 <%= live_render(@conn, AppWeb.TodoLive) %>
 
