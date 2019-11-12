@@ -18,9 +18,7 @@ defmodule AppWeb.ClockLive do
   end
 
   defp put_date(socket) do
-    salutation = "Welcome to LiveView, from the Programming Phoenix team!"
     assign(socket,
-      salutation: salutation,
       date: :calendar.local_time())
   end
 end
