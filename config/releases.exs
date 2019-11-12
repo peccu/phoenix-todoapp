@@ -13,9 +13,8 @@ secret_key_base =
     """
 
 config :app, AppWeb.Endpoint,
-  url: [host: System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com", port: 80],
-  check_origin: ["//0.0.0.0:4000",
-                 "//" <> System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com"],
+  url: [host: System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com", port: 443],
+  check_origin: ["//0.0.0.0:4000"],
   secret_key_base: secret_key_base,
   server: true
 
