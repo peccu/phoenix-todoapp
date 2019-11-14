@@ -29,7 +29,15 @@ defmodule AppWeb.TodoLive do
     {:noreply, put_date(socket)}
   end
 
-  defp put_date(socket) do
-    assign(socket, todos: Todos.list_todos())
+  def handle_event("show_done", _, socket) do
+    {:noreply, put_date(socket, true)}
+  end
+
+  def handle_event("hide_done", _, socket) do
+    {:noreply, put_date(socket)}
+  end
+
+  defp put_date(socket, show_done \\ false) do
+    assign(socket, todos: Todos.list_todos(), show_done: show_done)
   end
 end
