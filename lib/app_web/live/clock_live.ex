@@ -19,6 +19,7 @@ defmodule AppWeb.ClockLive do
 
   defp put_date(socket) do
     assign(socket,
-      date: :calendar.local_time())
+      date: :calendar.local_time()
+    )
   end
 end
