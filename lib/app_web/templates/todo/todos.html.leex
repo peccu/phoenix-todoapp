@@ -1,9 +1,9 @@
 <div>
 <%= if @show_done do %>
   <center><button phx-click="hide_done">Hide Done</button></center>
-<%= else %>
+<% else %>
   <center><button phx-click="show_done">Show Done</button></center>
-<%= end %>
+<% end %>
 </div>
 <%= for todo <- @todos do %>
   <%= if @show_done || not todo.done do %>

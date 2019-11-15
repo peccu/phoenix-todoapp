@@ -1,6 +1,5 @@
 defmodule AppWeb.ClockLive do
   use Phoenix.LiveView
-  alias App.Todos
   alias AppWeb.ClockView
 
   def render(assigns) do
