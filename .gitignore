@@ -38,3 +38,4 @@ npm-debug.log
 .netrc
 .ash_history
 .ssh/
+*-emacs-elixir-format.*
