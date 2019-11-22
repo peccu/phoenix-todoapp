@@ -9,12 +9,19 @@
   <tr>
     <th>Done</th>
     <th>Title</th>
+    <th>Action</th>
   </tr>
 <%= for todo <- @todos do %>
   <%= if @show_done || not todo.done do %>
   <tr>
     <td><%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %></td>
+    <%= if not @in_edit do %>
     <td><%= todo.title %></td>
+    <td><center><button phx-click="start_edit" phx-value-id="todo.id">Edit</button></center></td>
+    <% else %>
+    <td>Edit: <%= todo.title %></td>
+    <td><center><button phx-click="save" phx-value-id="todo.id" disabled>Save</button><button phx-click="discard" phx-value-id="todo.id">Discard</button></center></td>
+    <% end %>
   </tr>
   <% end %>
 <% end %>

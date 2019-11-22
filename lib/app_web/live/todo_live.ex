@@ -38,6 +38,21 @@ defmodule AppWeb.TodoLive do
     {:noreply, put_date(assign(socket, show_done: false))}
   end
 
+  # edit todo
+  def handle_event("start_edit", _, socket) do
+    {:noreply, put_date(assign(socket, in_edit: true))}
+  end
+
+  def handle_event("save", %{"id" => id, "title" => title}, socket) do
+    todo = Todos.get_todo!(id)
+    Todos.update_todo(todo, %{title: title})
+    {:noreply, put_date(assign(socket, in_edit: false))}
+  end
+
+  def handle_event("discard", %{"id" => _id}, socket) do
+    {:noreply, put_date(assign(socket, in_edit: false))}
+  end
+
   defp put_date(socket) do
     assign(socket, todos: Todos.list_todos())
   end
