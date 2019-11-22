@@ -20,7 +20,12 @@
     <td><center><button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button></center></td>
     <% else %>
     <td>Edit: <%= todo.title %></td>
-    <td><center><button phx-click="save" phx-value-id="<%= todo.id %>" disabled>Save</button><button phx-click="discard" phx-value-id="<%= todo.id %>">Discard</button></center></td>
+    <td>
+      <center>
+        <button phx-click="save" phx-value-id="<%= todo.id %>" disabled>Save</button>
+        <button phx-click="discard" phx-value-id="<%= todo.id %>">Discard</button>
+      </center>
+    </td>
     <% end %>
   </tr>
   <% end %>
