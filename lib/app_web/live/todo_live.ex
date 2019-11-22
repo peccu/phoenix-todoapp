@@ -39,7 +39,8 @@ defmodule AppWeb.TodoLive do
   end
 
   # edit todo
-  def handle_event("start_edit", _, socket) do
+  def handle_event("start_edit", var, socket) do
+    var |> IO.inspect()
     {:noreply, put_date(assign(socket, in_edit: true))}
   end
 
