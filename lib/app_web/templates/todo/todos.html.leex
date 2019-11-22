@@ -19,12 +19,13 @@
     <td><%= todo.title %></td>
     <td><center><button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button></center></td>
     <% else %>
-    <td>Edit: <%= todo.title %></td>
-    <td>
-      <center>
-        <button phx-click="save" phx-value-id="<%= todo.id %>" disabled>Save</button>
+    <td colspan=2>
+      <form action="#" phx-submit="save">
+        <%= hidden_input :todo, :id, value: todo.id %>
+        <%= text_input :todo, :title, value: todo.title %>
+        <%= submit "Save", phx_disable_with: "Saving..." %>
         <button phx-click="discard" phx-value-id="<%= todo.id %>">Discard</button>
-      </center>
+      </form>
     </td>
     <% end %>
   </tr>

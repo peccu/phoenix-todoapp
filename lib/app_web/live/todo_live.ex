@@ -46,7 +46,7 @@ defmodule AppWeb.TodoLive do
     {:noreply, put_date(assign(socket, in_edit: true))}
   end
 
-  def handle_event("save", %{"id" => id, "title" => title}, socket) do
+  def handle_event("save",%{"todo" =>  %{"id" => id, "title" => title}}, socket) do
     todo = Todos.get_todo!(id)
     Todos.update_todo(todo, %{title: title})
     Logger.info("SAVE ID:#{id}")
