@@ -5,14 +5,20 @@
   <center><button phx-click="show_done">Show Done</button></center>
 <% end %>
 </div>
+<table>
+  <tr>
+    <th>Done</th>
+    <th>Title</th>
+  </tr>
 <%= for todo <- @todos do %>
   <%= if @show_done || not todo.done do %>
-  <div>
-    <%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %>
-    <%= todo.title %>
-  </div>
+  <tr>
+    <td><%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %></td>
+    <td><%= todo.title %></td>
+  </tr>
   <% end %>
 <% end %>
+</table>
 <form action="#" phx-submit="add">
   <%= text_input :todo, :title, placeholder: "What do you want to get done?" %>
   <%= submit "Add", phx_disable_with: "Adding..." %>
