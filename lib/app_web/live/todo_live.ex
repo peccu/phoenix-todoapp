@@ -2,6 +2,7 @@ defmodule AppWeb.TodoLive do
   use Phoenix.LiveView
   alias App.Todos
   alias AppWeb.TodoView
+  require Logger
 
   def render(assigns) do
     TodoView.render("todos.html", assigns)
@@ -41,16 +42,19 @@ defmodule AppWeb.TodoLive do
   # edit todo
   def handle_event("start_edit", var, socket) do
     var |> IO.inspect()
+    Logger.info("START EDIT ID:#{var["id"]}")
     {:noreply, put_date(assign(socket, in_edit: true))}
   end
 
   def handle_event("save", %{"id" => id, "title" => title}, socket) do
     todo = Todos.get_todo!(id)
     Todos.update_todo(todo, %{title: title})
+    Logger.info("SAVE ID:#{id}")
     {:noreply, put_date(assign(socket, in_edit: false))}
   end
 
-  def handle_event("discard", %{"id" => _id}, socket) do
+  def handle_event("discard", %{"id" => id}, socket) do
+    Logger.info("DISCARD ID:#{id}")
     {:noreply, put_date(assign(socket, in_edit: false))}
   end
 
