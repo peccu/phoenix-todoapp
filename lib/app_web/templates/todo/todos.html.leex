@@ -8,6 +8,7 @@
 <table>
   <tr>
     <th>Done</th>
+    <th>ID</th>
     <th>Title</th>
     <th>Action</th>
   </tr>
@@ -15,6 +16,7 @@
   <%= if @show_done || not todo.done do %>
   <tr>
     <td><%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %></td>
+    <td><%= todo.id %></td>
     <%= if not @in_edit do %>
     <td><%= todo.title %></td>
     <td><center><button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button></center></td>
