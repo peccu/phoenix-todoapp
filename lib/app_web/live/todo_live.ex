@@ -11,17 +11,17 @@ defmodule AppWeb.TodoLive do
   def mount(_session, socket) do
     Todos.subscribe()
 
-    {:ok, put_date(assign(socket, show_done: false, in_edit: false))}
+    {:ok, socket |> put_default() |> put_date()}
   end
 
   def handle_info({Todos, [:todo | _], _}, socket) do
-    {:noreply, put_date(assign(socket, show_done: false, in_edit: false))}
+    {:noreply, put_date(socket)}
   end
 
   def handle_event("add", %{"todo" => todo}, socket) do
     Todos.create_todo(todo)
 
-    {:noreply, put_date(assign(socket, show_done: false, in_edit: false))}
+    {:noreply, socket |> put_default() |> put_date()}
   end
 
   # toggle list
@@ -56,6 +56,12 @@ defmodule AppWeb.TodoLive do
   def handle_event("discard", %{"id" => id}, socket) do
     Logger.info("DISCARD ID:#{id}")
     {:noreply, put_date(assign(socket, in_edit: false))}
+  end
+
+  defp put_default(socket) do
+    socket
+    |> assign(show_done: false)
+    |> assign(in_edit: false)
   end
 
   defp put_date(socket) do
