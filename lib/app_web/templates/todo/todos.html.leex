@@ -26,7 +26,7 @@
         <%= hidden_input :todo, :id, value: todo.id %>
         <%= text_input :todo, :title, value: todo.title %>
         <%= submit "Save", phx_disable_with: "Saving..." %>
-        <button phx-click="discard" phx-value-id="<%= todo.id %>">Discard</button>
+        <button type="cancel" onclick="return false;" phx-click="discard" phx-value-id="<%= todo.id %>">Discard</button>
       </form>
     </td>
     <% end %>
