@@ -14,6 +14,7 @@ defmodule AppWeb.TodoLive do
     {:ok, socket |> put_default() |> put_date()}
   end
 
+  # PubSub Topic
   def handle_info({Todos, [:todo | _], _}, socket) do
     {:noreply, put_date(socket)}
   end
@@ -24,6 +25,7 @@ defmodule AppWeb.TodoLive do
     {:noreply, socket |> put_default() |> put_date()}
   end
 
+  # LiveView Events
   # toggle list
   def handle_event("toggle_done", %{"id" => id}, socket) do
     todo = Todos.get_todo!(id)
@@ -58,6 +60,7 @@ defmodule AppWeb.TodoLive do
     {:noreply, socket |> end_edit() |> put_date()}
   end
 
+  # Private Functions
   defp put_default(socket) do
     socket
     |> assign(show_done: false)
