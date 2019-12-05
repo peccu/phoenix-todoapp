@@ -17,7 +17,7 @@
   <tr>
     <td><%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %></td>
     <td><%= todo.id %></td>
-    <%= if String.to_integer(@in_edit) != todo.id do %>
+    <%= if @in_edit != todo.id do %>
     <td><%= todo.title |> autolinker |> raw %></td>
     <td><center><button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button></center></td>
     <% else %>

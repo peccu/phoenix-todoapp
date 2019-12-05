@@ -44,19 +44,24 @@ defmodule AppWeb.TodoLive do
   # edit todo
   def handle_event("start_edit", var, socket) do
     var |> IO.inspect()
-    Logger.info("START EDIT ID:#{var["id"]}")
-    {:noreply, socket |> start_edit(var["id"]) |> put_date()}
+    id = String.to_integer(var["id"])
+    Logger.info("START EDIT ID:#{id}")
+    {:noreply, socket |> start_edit(id) |> put_date()}
   end
 
   def handle_event("save", %{"todo" => %{"id" => id, "title" => title}}, socket) do
     todo = Todos.get_todo!(id)
     Todos.update_todo(todo, %{title: title})
     Logger.info("SAVE ID:#{id}")
+    id = String.to_integer(id)
+    id |> Todos.end_edit_todo()
     {:noreply, socket |> end_edit() |> put_date()}
   end
 
   def handle_event("discard", %{"id" => id}, socket) do
     Logger.info("DISCARD ID:#{id}")
+    id = String.to_integer(id)
+    id |> Todos.end_edit_todo()
     {:noreply, socket |> end_edit() |> put_date()}
   end
 
@@ -64,7 +69,7 @@ defmodule AppWeb.TodoLive do
   defp put_default(socket) do
     socket
     |> assign(show_done: false)
-    |> assign(in_edit: "0")
+    |> assign(in_edit: 0)
   end
 
   defp start_edit(socket, id) do
@@ -74,7 +79,7 @@ defmodule AppWeb.TodoLive do
 
   defp end_edit(socket) do
     socket
-    |> assign(in_edit: "0")
+    |> assign(in_edit: 0)
   end
 
   defp put_date(socket) do
