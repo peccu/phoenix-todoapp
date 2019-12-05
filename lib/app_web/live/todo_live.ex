@@ -19,13 +19,13 @@ defmodule AppWeb.TodoLive do
     {:noreply, put_date(socket)}
   end
 
+  # LiveView Events
   def handle_event("add", %{"todo" => todo}, socket) do
     Todos.create_todo(todo)
 
     {:noreply, socket |> put_default() |> put_date()}
   end
 
-  # LiveView Events
   # toggle list
   def handle_event("toggle_done", %{"id" => id}, socket) do
     todo = Todos.get_todo!(id)
