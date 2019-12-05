@@ -19,7 +19,15 @@
     <td><%= todo.id %></td>
     <%= if @in_edit != todo.id do %>
     <td><%= todo.title |> autolinker |> raw %></td>
-    <td><center><button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button></center></td>
+    <td>
+      <center>
+        <%= if @in_edits |> Enum.member?(todo.id) do %>
+        <button phx-click="start_edit" phx-value-id="<%= todo.id %>" disabled>Someone is Editing</button>
+        <% else %>
+        <button phx-click="start_edit" phx-value-id="<%= todo.id %>">Edit</button>
+        <% end %>
+      </center>
+    </td>
     <% else %>
     <td colspan=2>
       <form action="#" phx-submit="save">
