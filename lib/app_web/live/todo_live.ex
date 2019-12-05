@@ -15,6 +15,28 @@ defmodule AppWeb.TodoLive do
   end
 
   # PubSub Topic
+  def handle_info({Todos, [:todo, :start_editing], id}, socket) do
+    Logger.info("START EDIT ID:#{id} by others")
+
+    socket =
+      socket
+      |> assign(in_edits: socket.assigns.in_edits ++ [id])
+      |> put_date()
+
+    {:noreply, socket}
+  end
+
+  def handle_info({Todos, [:todo, :end_editing], id}, socket) do
+    Logger.info("END EDIT ID:#{id} by others")
+
+    socket =
+      socket
+      |> assign(in_edits: socket.assigns.in_edits -- [id])
+      |> put_date()
+
+    {:noreply, socket}
+  end
+
   def handle_info({Todos, [:todo | _], _}, socket) do
     {:noreply, put_date(socket)}
   end
@@ -46,6 +68,7 @@ defmodule AppWeb.TodoLive do
     var |> IO.inspect()
     id = String.to_integer(var["id"])
     Logger.info("START EDIT ID:#{id}")
+    id |> Todos.start_edit_todo()
     {:noreply, socket |> start_edit(id) |> put_date()}
   end
 
@@ -69,16 +92,21 @@ defmodule AppWeb.TodoLive do
   defp put_default(socket) do
     socket
     |> assign(show_done: false)
+    |> assign(in_edits: [])
     |> assign(in_edit: 0)
   end
 
   defp start_edit(socket, id) do
+    socket.assigns.in_edit |> Todos.end_edit_todo()
+
     socket
+    |> assign(in_edits: socket.assigns.in_edits -- [socket.assigns.in_edit])
     |> assign(in_edit: id)
   end
 
   defp end_edit(socket) do
     socket
+    |> assign(in_edits: socket.assigns.in_edits -- [socket.assigns.in_edit])
     |> assign(in_edit: 0)
   end
 

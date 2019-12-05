@@ -76,6 +76,34 @@ defmodule App.Todos do
   end
 
   @doc """
+  Broadcast start editing a todo.
+
+  ## Examples
+
+      iex> start_edit_todo(123)
+      {:ok, %Todo{}}
+
+  """
+  def start_edit_todo(id) do
+    {:ok, id}
+    |> broadcast_change([:todo, :start_editing])
+  end
+
+  @doc """
+  Broadcast end editing a todo.
+
+  ## Examples
+
+      iex> end_edit_todo(123)
+      {:ok, %Todo{}}
+
+  """
+  def end_edit_todo(id) do
+    {:ok, id}
+    |> broadcast_change([:todo, :end_editing])
+  end
+
+  @doc """
   Deletes a Todo.
 
   ## Examples
