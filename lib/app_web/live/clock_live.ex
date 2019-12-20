@@ -1,9 +1,13 @@
 defmodule AppWeb.ClockLive do
   use Phoenix.LiveView
-  alias AppWeb.ClockView
+  import Calendar.Strftime
 
   def render(assigns) do
-    ClockView.render("clock.html", assigns)
+    ~L"""
+      <div>
+        It's <%= strftime!(@date, "%r") %>
+      </div>
+    """
   end
 
   def mount(_session, socket) do
