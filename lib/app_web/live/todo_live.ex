@@ -34,7 +34,7 @@ defmodule AppWeb.TodoLive do
         <center><button phx-click="show_done">Show Done</button></center>
       <% end %>
       </div>
-      <table>
+      <table class="slide-fade">
         <tr>
           <th>Done</th>
           <th>ID</th>
@@ -43,7 +43,7 @@ defmodule AppWeb.TodoLive do
         </tr>
       <%= for todo <- @todos do %>
         <%= if @show_done || not todo.done do %>
-        <tr>
+        <tr class="<%= if @show_done || not todo.done, do: "show" %>">
           <td><%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %></td>
           <td><%= todo.id %></td>
           <%= if @in_edit != todo.id do %>

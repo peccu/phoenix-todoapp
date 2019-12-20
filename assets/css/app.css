@@ -2,3 +2,15 @@
 
 @import "./phoenix.css";
 @import "./phoenix_live_view.css";
+
+/* https://cssanimation.rocks/list-items/ */
+.slide-fade tr {
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  height: 0;
+  line-height: 2em;
+}
+.slide-fade tr.show {
+  opacity: 1;
+  height: 2em;
+}
