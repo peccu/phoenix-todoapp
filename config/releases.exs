@@ -13,9 +13,14 @@ secret_key_base =
     """
 
 config :app, AppWeb.Endpoint,
-  url: [host: System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com", port: 443],
-  check_origin: ["//0.0.0.0:4000",
-                "//" <> System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com"],
+  url: [
+    host: System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com",
+    port: 443
+  ],
+  check_origin: [
+    "//0.0.0.0:4000",
+    "//" <> System.get_env("APP_NAME", "APP_NAME_NOT_SPECIFIED") <> ".gigalixirapp.com"
+  ],
   secret_key_base: secret_key_base,
   server: true
 
@@ -25,6 +30,7 @@ database_url =
     environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
+
 config :app, App.Repo,
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "2")

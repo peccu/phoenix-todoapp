@@ -8,6 +8,5 @@ defmodule MyApp.Repo.Migrations.CreateTodos do
 
       timestamps()
     end
-
   end
 end

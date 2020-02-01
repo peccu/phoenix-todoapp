@@ -1,11 +1,10 @@
 defmodule AppWeb.ClockLive do
   use Phoenix.LiveView
-  import Calendar.Strftime
 
   def render(assigns) do
     ~L"""
       <div>
-        It's <%= strftime!(@date, "%r") %>
+        It's <%= @date %>
       </div>
     """
   end
@@ -21,8 +20,11 @@ defmodule AppWeb.ClockLive do
   end
 
   defp put_date(socket) do
-    assign(socket,
-      date: :calendar.local_time()
-    )
+    date =
+      Timex.now()
+      |> Timex.to_datetime("Asia/Tokyo")
+      |> Timex.format!("{h12}:{m}:{s}{am}")
+
+    assign(socket, date: date)
   end
 end
